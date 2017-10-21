@@ -55,13 +55,16 @@ my purposes, this should be fine.
 
 ## Difference from other implementations
 
-* Most use an unnecessarily large dictionary, which defeats the
-  purpose of XKCD 936. (Seriously, who is going to remember "fractious
-  bustling fussy realm veining undying", which is a real output from
-  one of the other XKCD 936 inspired tools).
+* Other implementations use an unnecessarily large dictionary, which
+  defeats the purpose of XKCD 936. (Seriously, who is going to
+  remember "fractious bustling fussy realm veining undying", which is
+  a real output from one of the other XKCD 936 inspired tools).
   
-* Smaller dictionary (as recommended in XKCD 936) makes more memorable words
-* Alphabetizing words makes the phrase more memorable
+* Uses a smaller dictionary, as recommended in XKCD 936, for more
+  easily remembered words
+
+* Alphabetizing words makes the phrase more human friendly with little
+  loss in security
 
 ### correcthorsebatterystaple.net
 
