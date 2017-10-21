@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Generate a random password using correct horse battery staple
+# algorithm. Results are sorted alphabetically to make it easier to
+# remember. (User doesn't have to try all 24 different possibilities,
+# but security is not much worse).
+# hackerb9 September 2017
+
+
+debug="echo Debug:"
+debug=:
+
+# Use the most common English words, if we've got scowl installed.
+# If scowl isn't installed, just use the standard UNIX word list.
+for d in /usr/share/dict/scowl/english-words.10 /usr/share/dict/words
+do
+    if [ -r "$d" ]; then dict=$d; break; fi
+done
+
+if [ -z "$dict" ]; then
+    echo "Could not find a word list. Please install 'scowl' using apt install scowl."
+    exit 1
+fi
+
+mapfile words < <(grep '^[a-z]*$' "$dict")
+
+size=${#words[@]}
+$debug "Size of $dict is $size"
+
+mod=0
+if [[ $size -gt 32767 ]]; then
+    mod=$(($RANDOM % (size/32768))) 
+    echo "Warning: Dictionary is overly large. Passphrase may be hard to remember." >&2
+    echo "         You can fix this with: apt install scowl." >&2
+    $debug "dict is bigger than Bash's \$RANDOM, picking section $mod"
+fi
+
+for i in {0..3}; do
+    phrase[i]=${words[(RANDOM + mod*32768)%size]}
+done
+
+echo $(sort <<< "${phrase[@]}")
