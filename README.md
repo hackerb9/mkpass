@@ -37,13 +37,23 @@ second), but is actually compensated for by the second change.
 
 The XKCD 936 standard states that four random words from a dictionary
 is equal to 2^44 bits of entropy. This would be true if the dictionary
-is of size 2^11, that is 2048 words. However, it's actually hard to
-find a dictionary that small. The default UNIX word list contains over
-2^16 words (which is way too many for humans). The SCOWL package
-[/usr/share/dict/scowl/english-words.10] includes a dictionary of the
-most frequent 10% of English words, which happens to be a little over
-2^12 (4096) words long. Since we are picking four random words, this
-increases the amount of entropy by 4 bits.
+contains 2048 words (2^11). However, it's actually hard to find a
+dictionary that small. The default UNIX word list contains over 2^16
+words, which is way too many. It creates difficult to memorize
+passphrases like:
+
+    # UNIX /usr/share/dict/words
+    cautionary continually departmentalizes intellectualizes
+
+A more useful dictionary is included in the SCOWL package. That file
+is only the top 10% of English words, which happens to be a little
+over 2^12 (4096) words long. Since we are picking four random words,
+this increases the amount of entropy by 4 bits.
+
+    /usr/share/dict/scowl/english-words.10.
+
+
+
 
 ### The upshot: a wash
 
