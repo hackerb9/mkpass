@@ -46,11 +46,12 @@ passphrases like:
     cautionary continually departmentalizes intellectualizes
 
 A more useful dictionary is included in the SCOWL package. That file
-is only the top 10% of English words, which happens to be a little
+contains only the top 10% of English words, which happens to be a little
 over 2^12 (4096) words long. Since we are picking four random words,
 this increases the amount of entropy by 4 bits.
 
-    /usr/share/dict/scowl/english-words.10.
+    # Scowl's /usr/share/dict/scowl/english-words.10.
+    books ditto pushing stones
 
 
 
