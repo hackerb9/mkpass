@@ -22,11 +22,17 @@ function log2() {    # int floor log2 (lowball of base 2 logarithm)
     local  x=$(( $1/2 ))
     [[ x -lt 1 ]] && echo 0 ||  echo $(( 1 + $(log2 $x) ))
 }
-
-
+function fact() {    # factorial (number of permutations of x words)
+    local x=$1
+    [[ x -le 1 ]] && echo 1 ||  echo $(( $x * $(fact $(($x-1)) ) ))
+}
 function checksize() {		# Complain about dictionary size, if need be
+    size=4533
     $debug "Size of $dict is $size"
-    $debug "Bits of entropy: $((numwords * $(log2 $size) ))"
+    $debug "Number of words is $numwords"
+    $debug "Bits of entropy in dictionary: >=$(log2 $(( $size**$numwords)) )"
+    $debug "Bits lost from sorting $numwords words: <=$(( $(log2 $(fact $numwords) ) +1 ))"
+    $debug "Total bits of entropy in pass: >=$(log2 $(($size**$numwords/$(fact $numwords))) )"
 
     if [[ $size -gt 32767 ]]; then
 	echo "Warning: Dictionary is overly large and will contain uncommon words." >&2
@@ -40,6 +46,7 @@ function checksize() {		# Complain about dictionary size, if need be
 	echo "         You can fix this with: apt install scowl." >&2
     fi
 }
+
 
 
 #### MAIN
@@ -61,7 +68,6 @@ mapfile words < <(grep '^[a-z]*$' "$dict")
 
 size=${#words[@]}
 checksize
-
 
 # Pick the random words
 for i in $(seq $numwords); do
