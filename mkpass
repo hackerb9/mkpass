@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Generate a random password using correct horse battery staple
-# algorithm. Results are sorted alphabetically to make it easier to
-# remember. (User doesn't have to try all 24 different possibilities,
-# but security is not much worse).
+# Generate a random password of four common words (using CORRECT HORSE
+# BATTERY STAPLE algorithm as detailed in XKCD 936).
+
+# Note: Unlike XKCD 936, results are sorted alphabetically to make it
+# easier to remember. (User doesn't have to try all 24 different
+# possibilities, but security is not much worse).
+
 # hackerb9 September 2017
 
 numwords=4			# Number of random common words to pick
