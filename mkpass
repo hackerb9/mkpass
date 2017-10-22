@@ -72,7 +72,7 @@ checksize
 # Pick the random words
 for i in $(seq $numwords); do
     # Bash's RANDOM is only 15 bits, so use it twice for 30.
-    phrase[i]=${words[(RANDOM<<15 + RANDOM)%size]}
+    phrase[i]=${words[( (RANDOM<<15) + RANDOM )%size]}
 done
 
 # Print them sorted
