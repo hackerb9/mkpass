@@ -48,7 +48,7 @@ passphrases like:
 A more useful dictionary is included in the SCOWL package. That file
 contains only the top 10% of English words, which happens to be a little
 over 2^12 (4096) words long. Since we are picking four random words,
-this increases the amount of entropy by 4 bits.
+this also increases the amount of entropy by 4 bits.
 
     # Scowl's /usr/share/dict/scowl/english-words.10.
     books ditto pushing stones
@@ -60,9 +60,8 @@ this increases the amount of entropy by 4 bits.
 
 Alphabetizing the passphrase, but using a dictionary that is twice as
 long results in a passphrase that is only slightly weaker (0.58 bits)
-than the XKCD 936 specification. This means instead of taking 550
-years, it'd take 366 years to crack at 1000 guesses per second. For
-my purposes, this should be fine.  
+than the XKCD 936 specification. This means instead of taking 278
+years, it'd take 185 years to crack (at 1000 guesses per second).
 
 ## Difference from other implementations
 
