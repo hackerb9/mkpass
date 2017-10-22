@@ -6,11 +6,42 @@
 # but security is not much worse).
 # hackerb9 September 2017
 
+numwords=4			# Number of random common words to pick
 
-debug="echo Debug:"
-debug=:
+if [[ "$1" == "-v" ]]; then
+    debug="echo Debug:"
+else
+    debug=:
+fi
 
-# Use the most common English words, if we've got scowl installed.
+
+function log2() {    # int floor log2 (lowball of base 2 logarithm)
+    local  x=$(( $1/2 ))
+    [[ x -lt 1 ]] && echo 0 ||  echo $(( 1 + $(log2 $x) ))
+}
+
+
+function checksize() {		# Complain about dictionary size, if need be
+    $debug "Size of $dict is $size"
+    $debug "Bits of entropy: $((numwords * $(log2 $size) ))"
+
+    if [[ $size -gt 32767 ]]; then
+	echo "Warning: Dictionary is overly large and will contain uncommon words." >&2
+	echo "         Passphrase may be hard to remember." >&2
+	echo "         You can fix this with: apt install scowl." >&2
+    fi
+
+    if [[ $size -lt 2048 ]]; then
+	echo "Warning: Dictionary $dict only has $size words." >&2
+	echo "         This will not be as secure as XKCD 936." >&2
+	echo "         You can fix this with: apt install scowl." >&2
+    fi
+}
+
+
+#### MAIN
+
+# Use the most common 10% of English words, if we've got scowl installed.
 # If scowl isn't installed, just use the standard UNIX word list.
 for d in /usr/share/dict/scowl/english-words.10 /usr/share/dict/words
 do
@@ -22,21 +53,18 @@ if [ -z "$dict" ]; then
     exit 1
 fi
 
+# Slurp!
 mapfile words < <(grep '^[a-z]*$' "$dict")
 
 size=${#words[@]}
-$debug "Size of $dict is $size"
+checksize
 
-mod=0
-if [[ $size -gt 32767 ]]; then
-    mod=$(($RANDOM % (size/32768))) 
-    echo "Warning: Dictionary is overly large. Passphrase may be hard to remember." >&2
-    echo "         You can fix this with: apt install scowl." >&2
-    $debug "dict is bigger than Bash's \$RANDOM, picking section $mod"
-fi
 
-for i in {0..3}; do
-    phrase[i]=${words[(RANDOM + mod*32768)%size]}
+# Pick the random words
+for i in $(seq $numwords); do
+    # Bash's RANDOM is only 15 bits, so use it twice for 30.
+    phrase[i]=${words[(RANDOM<<15 + RANDOM)%size]}
 done
 
+# Print them sorted
 echo $(sort <<< "${phrase[@]}")
