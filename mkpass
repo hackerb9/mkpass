@@ -27,12 +27,12 @@ function fact() {    # factorial (number of permutations of x words)
     [[ x -le 1 ]] && echo 1 ||  echo $(( $x * $(fact $(($x-1)) ) ))
 }
 function checksize() {		# Complain about dictionary size, if need be
-    size=4533
     $debug "Size of $dict is $size"
     $debug "Number of words is $numwords"
     $debug "Bits of entropy in dictionary: >=$(log2 $(( $size**$numwords)) )"
     $debug "Bits lost from sorting $numwords words: <=$(( $(log2 $(fact $numwords) ) +1 ))"
     $debug "Total bits of entropy in pass: >=$(log2 $(($size**$numwords/$(fact $numwords))) )"
+    $debug "Average time to crack (@ 1000 guesses/s): >=$(($size**$numwords/$(fact $numwords) / 1000 / 60 / 60 / 24 / 365 / 2 )) years"
 
     if [[ $size -gt 32767 ]]; then
 	echo "Warning: Dictionary is overly large and will contain uncommon words." >&2
