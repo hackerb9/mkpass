@@ -5,6 +5,12 @@ Generate a secure, memorable password using the XKCD 936 method
 
 # Example usage
 
+    $ ./mkpass
+    grown hole issuing wears
+
+Note, for best security, it is recommended you accept the first
+suggestion rather than running mkpass repeatedly to find something
+that suits you better.
 
 ## Compliance with XKCD 936 Standard
 
@@ -39,11 +45,11 @@ The XKCD 936 standard states that four random words from a dictionary
 is equal to 2^44 bits of entropy. This would be true if the dictionary
 is of size 2^11, that is 2048 words. However, it's actually hard to
 find a dictionary that small. The default UNIX word list contains over
-2^16 words (which is way too many for humans). The SCOWL package
-[/usr/share/dict/scowl/english-words.10] includes a dictionary of the
-most frequent 10% of English words, which happens to be a little over
-2^12 (4096) words long. Since we are picking four random words, this
-increases the amount of entropy by 4 bits.
+2^16 words (which includes many hard to remember words). The SCOWL
+package [/usr/share/dict/scowl/english-words.10] includes a dictionary
+of the most frequent 10% of English words, which happens to be a
+little over 2^12 (4096) words long. Since we are picking four random
+words, this increases the amount of entropy by 4 bits.
 
 ### The upshot: a wash
 
@@ -82,3 +88,17 @@ Example output: nonhuman boulevard covert hardcover tracer acrobat
 * Easily installable in Debian using `apt install xkcdpass`
 * Uses a much too large dictionary
 * Defaults to six words instead of four.
+
+
+# TO DO
+
+* Remove reliance on external dictionaries. Just include the wordlist
+  in this shell script.
+
+* Add options to allow different strength passwords.
+
+* If I find a wordlist that has the words listed in frequency order
+  instead of alphabetical, then I can let people choose how strong of
+  a password they want. (Could select in terms of bits, years, or just
+  "easy", "medium", "hard").
+
