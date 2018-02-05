@@ -130,7 +130,7 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
 |-------------------------------|----------|------------------------------|
 | XKCD 936 canonical example	| 44   	   | correct horse battery staple |
 | mkpass   	     		| 43.42	   | evening live power suit      |
-| correcthorsebatterystaple.net | 59.05	   | Sacrifice-Fashion-Repetition-Shine-8 |
+| correcthorsebatterystaple.net | 47.95	   | Sacrifice-Fashion-Repetition-Shine-8 |
 | Ben Finney's xkcdpass         | 99.59	   | nonhuman boulevard covert hardcover tracer acrobat |
 
 
