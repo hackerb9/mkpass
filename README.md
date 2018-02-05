@@ -97,7 +97,7 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
   install xkcdpass`.
 
 * John Van Der Loo's
-  [CorrectHorseBatteryStaple.net](CorrectHorseBatteryStaple.net). A
+  [CorrectHorseBatteryStaple.net](CorrectHorseBatteryStaple.net), a
   Javascript web page. Great for people who aren't comfortable at the
   command line.
 
@@ -106,8 +106,8 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
 * Alphabetized words makes the phrase more human friendly with little
   loss in security.
 
-* Mkpass uses a smaller dictionary and only four words, as recommended
-  in XKCD 936, for easily remembered passphrases.</br></br> _XKCD 936's
+* Mkpass uses a small dictionary and four words, as recommended in
+  XKCD 936, for easily remembered passphrases.</br></br> _XKCD 936's
   purpose was to show that strong passwords could be memorizable. Some
   implementations defeat that purpose by trying to make the passwords
   overly strong. A real example: "fractious bustling fussy realm
@@ -126,12 +126,12 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
   accessed on the web (correcthorsebatterystaple.net) or installed
   using the OS package manager (`apt install xkcdpass`).
 
-| Password generator name       | Bits of Entropy | Example output               |
-|-------------------------------|-----------------|------------------------------|
-| XKCD 936 canonical example	| 44   	  	  | correct horse battery staple |
-| mkpass   	     		| 43.42		  | evening live power suit 	 |
-| correcthorsebatterystaple.net | 59.05		  | Sacrifice-Fashion-Repetition-Shine-8 |
-| Ben Finney's xkcdpass         | 99.59		  | nonhuman boulevard covert hardcover tracer acrobat |
+| Password generator name       | Entropy  | Example output               |
+|-------------------------------|----------|------------------------------|
+| XKCD 936 canonical example	| 44   	   | correct horse battery staple |
+| mkpass   	     		| 43.42	   | evening live power suit      |
+| correcthorsebatterystaple.net | 59.05	   | Sacrifice-Fashion-Repetition-Shine-8 |
+| Ben Finney's xkcdpass         | 99.59	   | nonhuman boulevard covert hardcover tracer acrobat |
 
 
 # TO DO
@@ -145,4 +145,16 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
   order instead of alphabetical, then I can let people choose how
   strong of a password they want. (Could select in terms of bits,
   years, or just "easy", "medium", "hard").
+
+* I was thinking the wordlist used by CorrectHorseBatteryStaple.net
+  might be handy, but it may be copyrighted under a restrictive
+  license. Despite the BSD license it bears in the source code, it
+  appears to be an exact copy of 'GENERAL SERVICE LIST: words # 0000-#
+  2284 in Frequency Order' by Baumann-Culligan, 1995. It's
+  [available](http://jbauman.com/aboutgsl.html) from the author's
+  website for "free", but there is no explicit license mentioned.
+
+* Google N-grams seems to be a good license ([CC-BY
+  3.0](https://creativecommons.org/licenses/by/3.0/)), but I'll have
+  to process it as I only need a few kilobytes of 5GB of data. 
 
