@@ -64,8 +64,8 @@ if [ -z "$dict" ]; then
     exit 1
 fi
 
-# Slurp!
-mapfile words < <(grep '^[a-z]*$' "$dict")
+# Slurp!   Note: we skip capitals, apostrophes, and hyphens.
+mapfile words < <(grep "^[a-z]*$" "$dict")
 
 size=${#words[@]}
 checksize
