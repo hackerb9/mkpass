@@ -13,6 +13,7 @@ numwords=4			# Number of random common words to pick
 
 if [[ "$1" == "-v" ]]; then
     debug="echo Debug:"
+    shift
 else
     debug=:
 fi
@@ -53,7 +54,7 @@ function checksize() {		# Complain about dictionary size, if need be
 
 # Use the most common 10% of English words, if we've got scowl installed.
 # If scowl isn't installed, just use the standard UNIX word list.
-for d in /usr/share/dict/scowl/english-words.10 /usr/share/dict/words
+for d in "$1" /usr/share/dict/scowl/english-words.10 /usr/share/dict/words
 do
     if [ -r "$d" ]; then dict=$d; break; fi
 done
