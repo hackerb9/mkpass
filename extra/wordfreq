@@ -36,7 +36,7 @@ cat $* |
 	      }
 	    }' |
 	sort -r -n |
-	cut -f2 > corpus
+	cut -f2 > wordlist
 
-cat corpus | grep '^[a-z]*$' | head -4096 > corpus.4096
-cat corpus | grep '^[a-z]*$' | head -2048 > corpus.2048
+cat wordlist | grep '^[a-z]*$' | head -4096 > wordlist.4096
+cat wordlist | grep '^[a-z]*$' | head -2048 > wordlist.2048
