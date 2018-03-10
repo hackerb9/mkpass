@@ -1,0 +1,42 @@
+#!/bin/sh
+# wordfreq: Count frequency of words for use in an XKCD 936 wordlist
+#
+# Currently apostrophes are allowed for words like "don't" and "shouldn't".
+
+# Canonical usage:
+#
+# 	wordfreq *.txt | more
+#
+
+if [ "$#" -eq 0 ]; then
+    set - *.txt
+fi
+
+cat $* |
+	tr -d '\r' |	     # No DOS carriage returns
+	fmt -w 2500 |	     # Make sure paragraphs are one line long.
+	sed -r 's/--+/ /g' | # Remove dashes, not hyphens
+	tr -sc "[:alpha:]'-" '\n' | # Compress runs of non-letters into newline
+	sed -r 's/-+(\W|$)/\1/g; s/(\W|^)-+/\1/g' | # Remove dashes at beginning or end of words.
+	sed -r "s/'+(\W|$)/\1/g; s/(\W|^)'+/\1/g" | # Remove single quotes at beginning or end of words.
+	tr -s '\n' |				    # Get rid of blank lines
+	sort |
+	uniq -c |
+	sort -r -n |
+	awk '		# keep most common capitalization (the, The, THE)
+	    { word=tolower($2);
+	      if (count[word] == "") {
+		caps[word]=$2;
+	      }
+	      count[word]+=$1;
+	    }
+	    END {
+	      for (w in count) {
+		print  count[w] "\t" caps[w];
+	      }
+	    }' |
+	sort -r -n |
+	cut -f2 > corpus
+
+cat corpus | grep '^[a-z]*$' | head -4096 > corpus.4096
+cat corpus | grep '^[a-z]*$' | head -2048 > corpus.2048
