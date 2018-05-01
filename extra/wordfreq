@@ -36,7 +36,7 @@ cat $* |
 	      }
 	    }' |
 	sort -r -n |
-	cut -f2 > wordlist
+	cut -f2 > wordlist.all
 
 cat wordlist | grep '^[a-z]*$' | head -4096 > wordlist.4096
 cat wordlist | grep '^[a-z]*$' | head -2048 > wordlist.2048
