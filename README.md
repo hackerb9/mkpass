@@ -10,16 +10,22 @@ Generate a secure, memorable password using the XKCD 936 method
 
 Although it is simple for a human to make up a story to memorize these
 four words, this passphrase is actually quite strong: it would take
-185 years for current computers to crack it.
+185 years for current computers to crack it. 
 
 Note that only common words are used and the words are alphabetized.
 This corrects a common problem with most XKCD 936 implementations:
 they make overly strong passwords that are not easily memorizable,
 which misunderstands the whole purpose of XKCD 936.
 
-It is suggested, for best security, to accept the first passphrase
-rather than running mkpass repeatedly to find something that suits you
-better.
+This program also features the ability to select your word list by
+naming a file on the command line. Instead of using a generic
+dictionary which may have words with no salience for you, you can use
+your favorite books or your own writings from e-mail and social media.
+I've created an example of [using Andrew Lang's Fairy Books](extra) as
+a corpus to generate passphrases that use only the words we learned as
+children. (E.g., "drawn lad shining story"). As long as your corpus
+has enough words (>4096), it should be safe to let people know your
+wordlist.
 
 ## Compliance with XKCD 936 Standard
 
@@ -133,11 +139,13 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
 | correcthorsebatterystaple.net | 47.95	   | Sacrifice-Fashion-Repetition-Shine-8 |
 | Ben Finney's xkcdpass         | 99.59	   | nonhuman boulevard covert hardcover tracer acrobat |
 
-
 # TO DO
 
-* Remove reliance on external dictionaries. Just include the wordlist
-  in this shell script.
+* Remove reliance on external dictionaries. Maybe include a basic
+  wordlist in this shell script.
+
+* Add an example of downloading one's own writings from Facebook and
+  Gmail and then using them as a corpus.
 
 * Add options to allow different strength passwords.
 
@@ -145,6 +153,8 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
   order instead of alphabetical, then I can let people choose how
   strong of a password they want. (Could select in terms of bits,
   years, or just "easy", "medium", "hard").
+
+# NOTES
 
 * I was thinking the wordlist used by CorrectHorseBatteryStaple.net
   might be handy, but it may be copyrighted under a restrictive
@@ -154,7 +164,14 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
   [available](http://jbauman.com/aboutgsl.html) from the author's
   website for "free", but there is no explicit license mentioned.
 
-* Google N-grams seems to be a good license ([CC-BY
-  3.0](https://creativecommons.org/licenses/by/3.0/)), but I'll have
-  to process it as I only need a few kilobytes of 5GB of data. 
+* Google N-grams is under a good license ([CC-BY
+  3.0](https://creativecommons.org/licenses/by/3.0/)), but after I
+  processed the data to get [a frequency sorted list of
+  words](https://github.com/hackerb9/gwordlist), but it did not make
+  very good passphrases. The data is just too wide ranging and the
+  OCR is too poor.
+
+ * It is suggested, for best security, to accept the first
+ passphrase rather than running mkpass repeatedly to find something
+ that suits you better.
 
