@@ -8,6 +8,10 @@ Just create a file of words, one per line, then specify that filename
 as an argument to `mkpass`. For a reasonably strong passphrase, you'll
 need at least 2048 words, but 4096 is preferred.
 
+Note that choosing your own corpus is not done to increase security,
+but neither does it reduce security. This program will generate secure
+passphrases even presuming everyone knows what corpus you are using.
+
 # Example: Andrew Lang's "The {Blue,Brown,Crimson,Green,Grey,Lilac,Olive,Orange,Pink,Red,Violet,Yellow} Fairy Book"
 
 I grew up listening and reading fairy tales, so words from those books
