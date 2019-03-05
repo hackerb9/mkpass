@@ -20,6 +20,9 @@ which misunderstands the whole purpose of XKCD 936.
 
 ## Use your own wordlist
 
+    $ ./mkpass extra/wordlist.2048
+    danger difficulty far mountains
+
 This program also features the ability to select your word list by
 naming a file on the command line. Instead of using a generic
 dictionary which may have words with no salience for you, you can use
@@ -28,12 +31,12 @@ I've created [an example of using Andrew Lang's Fairy
 Books](extra/README.md) as a corpus to generate passphrases from only
 the words we learned as children. (E.g., "drawn lad shining story").
 
-## Compliance with XKCD 936 Standard
+# Compliance with XKCD 936 Standard
 
 There is are two differences between this implementation
 and the method described in XKCD 936.
 
-### 1. Alphabetized word list
+## 1. Alphabetized word list
 
 The first difference: the word list is alphabetized to make it easier
 for humans to remember. The author (hackerb9) can remember the "story"
@@ -55,7 +58,7 @@ More technically, by alphabetizing we lose 4.6 bits of entropy. This
 would still reasonably hard to crack (~23 years at 1000 guesses per
 second), but is actually compensated for by the second change, below.
 
-### 2. Doubled dictionary size. 
+## 2. Doubled dictionary size. 
 
 The XKCD 936 standard states that four random words from a dictionary
 is equal to 2^44 bits of entropy. This would be true if the dictionary
@@ -84,7 +87,7 @@ little over 2^12 (4096) words long, which is one bit more than the
 2^11 words XKCD 936 calls for. Since we are picking four words, this
 increases the total amount of entropy by 4 bits.
 
-### The upshot? Equivalent for most people. 
+## The upshot? Equivalent for most people. 
 
 Alphabetizing the passphrase (-4.58), but using a dictionary that is
 twice as long (+4) results in a passphrase that is only slightly
