@@ -1,7 +1,8 @@
 # mkpass
-Generate a secure, memorable password using the XKCD 936 method
+Generate a secure, memorable password using the [XKCD 936 method](https://xkcd.com/936).
 
-![https://imgs.xkcd.com/comics/password_strength.png]
+![XKCD 936: Password Strength](README.md.d/password_strength.png)
+
 
 # Example usage
 
