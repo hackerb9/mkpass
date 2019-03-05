@@ -191,7 +191,7 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
 * Google N-grams is under a good license ([CC-BY
   3.0](https://creativecommons.org/licenses/by/3.0/)), but after I
   processed the data to get [a frequency sorted list of
-  words](https://github.com/hackerb9/gwordlist), but it did not make
+  words](https://github.com/hackerb9/gwordlist), it did not make
   very good passphrases. The data is just too wide ranging and the
   OCR is too poor.
 
