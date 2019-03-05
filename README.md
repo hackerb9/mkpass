@@ -1,8 +1,12 @@
 # mkpass
 Generate a secure, memorable password using the [XKCD 936 method](https://xkcd.com/936).
 
-![XKCD 936: Password Strength](README.md.d/password_strength.png)
+![XKCD 936: Password Strength](README.md.d/password_strength.png "https://xkcd.com/936")
 
+Note `mkpass` uses only _common_ words and _alphabetizes_ them. This
+corrects a problem with most XKCD 936 implementations: they make
+overly strong passwords that are not easily memorizable, which
+misunderstands the whole purpose of XKCD 936.
 
 # Example usage
 
@@ -12,11 +16,6 @@ Generate a secure, memorable password using the [XKCD 936 method](https://xkcd.c
 Although it is simple for a human to make up a story to memorize these
 four words, this passphrase is actually quite strong: it would take
 185 years for current computers to crack it. 
-
-Note that only common words are used and the words are alphabetized.
-This corrects a common problem with most XKCD 936 implementations:
-they make overly strong passwords that are not easily memorizable,
-which misunderstands the whole purpose of XKCD 936.
 
 ## Use your own wordlist
 
@@ -33,14 +32,23 @@ the words we learned as children. (E.g., _“drawn_ _lad_ _shining_ _story”_).
 
 ## Use -v (verbose mode) to show bits of entropy
 
-    $ ./mkpass -v extra/wordlist.all
-    Debug: Size of extra/wordlist.all is 15715
+    $ ./mkpass -v 
+    Debug: Size of /usr/share/dict/scowl/english-words.10 is 3942
     Debug: Number of words is 4
-    Debug: Bits of entropy in dictionary: >=55
+    Debug: Bits of entropy in dictionary: >=47
     Debug: Bits lost from sorting 4 words: <=5
-    Debug: Total bits of entropy in pass: >=51
-    Debug: Average time to crack (@ 1000 guesses/s): >=40291 years
-    couples hooted nobler washed
+    Debug: Total bits of entropy in pass: >=43
+    Debug: Average time to crack (@ 1000 guesses/s): >=159 years
+    above allowed levels presented
+   
+    $ ./mkpass -v extra/wordlist.4096
+    Debug: Size of extra/wordlist.4096 is 4096
+    Debug: Number of words is 4
+    Debug: Bits of entropy in dictionary: >=48
+    Debug: Bits lost from sorting 4 words: <=5
+    Debug: Total bits of entropy in pass: >=43
+    Debug: Average time to crack (@ 1000 guesses/s): >=185 years
+    cooking grey sparrow vanished
 
 # Compliance with XKCD 936 Standard
 
@@ -80,14 +88,14 @@ contains over 2^16 words (65536). Using this list makes passphrases
 that are almost useless because they are difficult to memorize. For
 example,
 
-    # Using /usr/share/dict/words
+    $ ./mkpass /usr/share/dict/words
     cautionary continually departmentalizes intellectualizes
 
 Since memorizability is the whole point, we need a list of _common_
-words. The SCOWL package (`apt install scowl`) contains
-`/usr/share/dict/scowl/english-words.10`, a list of the most frequent
-10% of English words. As you can see, it makes much better
-passphrases:
+words. The [SCOWL package](https://packages.debian.org/scowl) (`apt
+install scowl`) contains `/usr/share/dict/scowl/english-words.10`, a
+list of the most frequent 10% of English words. As you can see, it
+makes much better passphrases:
 
     # Scowl's /usr/share/dict/scowl/english-words.10.
     books ditto pushing stones
@@ -172,12 +180,13 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
 # NOTES
 
 * I was thinking the wordlist used by CorrectHorseBatteryStaple.net
-  might be handy, but it may be copyrighted under a restrictive
-  license. Despite the BSD license it bears in the source code, it
-  appears to be an exact copy of 'GENERAL SERVICE LIST: words # 0000-#
-  2284 in Frequency Order' by Baumann-Culligan, 1995. It's
-  [available](http://jbauman.com/aboutgsl.html) from the author's
-  website for "free", but there is no explicit license mentioned.
+  might be handy to include in this script, but it may be copyrighted
+  under a restrictive license. Despite the BSD license it bears in the
+  source code, it appears to be an exact copy of 'GENERAL SERVICE
+  LIST: words # 0000-# 2284 in Frequency Order' by Baumann-Culligan,
+  1995. It's [available](http://jbauman.com/aboutgsl.html) from the
+  author's website for "free", but there is no explicit license
+  mentioned.
 
 * Google N-grams is under a good license ([CC-BY
   3.0](https://creativecommons.org/licenses/by/3.0/)), but after I
@@ -186,7 +195,7 @@ If you don't like `mkpass`, maybe you'll like one of these other XKCD 936 inspir
   very good passphrases. The data is just too wide ranging and the
   OCR is too poor.
 
- * It is suggested, for best security, to accept the first
- passphrase rather than running mkpass repeatedly to find something
- that suits you better.
+* It is suggested, for best security, to accept the first passphrase
+  rather than running mkpass repeatedly to find something that suits
+  you better.
 
