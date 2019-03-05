@@ -29,7 +29,18 @@ dictionary which may have words with no salience for you, you can use
 your favorite books or your own writings from e-mail and social media.
 I've created [an example of using Andrew Lang's Fairy
 Books](extra/README.md) as a corpus to generate passphrases from only
-the words we learned as children. (E.g., "drawn lad shining story").
+the words we learned as children. (E.g., _“drawn_ _lad_ _shining_ _story”_).
+
+## Use -v (verbose mode) to show bits of entropy
+
+    $ ./mkpass -v extra/wordlist.all
+    Debug: Size of extra/wordlist.all is 15715
+    Debug: Number of words is 4
+    Debug: Bits of entropy in dictionary: >=55
+    Debug: Bits lost from sorting 4 words: <=5
+    Debug: Total bits of entropy in pass: >=51
+    Debug: Average time to crack (@ 1000 guesses/s): >=40291 years
+    couples hooted nobler washed
 
 # Compliance with XKCD 936 Standard
 
