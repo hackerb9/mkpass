@@ -18,15 +18,15 @@ This corrects a common problem with most XKCD 936 implementations:
 they make overly strong passwords that are not easily memorizable,
 which misunderstands the whole purpose of XKCD 936.
 
+## Use your own wordlist
+
 This program also features the ability to select your word list by
 naming a file on the command line. Instead of using a generic
 dictionary which may have words with no salience for you, you can use
 your favorite books or your own writings from e-mail and social media.
-I've created an example of [using Andrew Lang's Fairy Books](extra) as
-a corpus to generate passphrases that use only the words we learned as
-children. (E.g., "drawn lad shining story"). As long as your corpus
-has enough words (>4096), it should be safe to let people know your
-wordlist.
+I've created [an example of using Andrew Lang's Fairy
+Books](extra/README.md) as a corpus to generate passphrases from only
+the words we learned as children. (E.g., "drawn lad shining story").
 
 ## Compliance with XKCD 936 Standard
 
