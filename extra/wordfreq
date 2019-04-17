@@ -38,5 +38,14 @@ cat $* |
 	sort -r -n |
 	cut -f2 > wordlist.all
 
-cat wordlist | grep '^[a-z]*$' | head -4096 > wordlist.4096
-cat wordlist | grep '^[a-z]*$' | head -2048 > wordlist.2048
+prune=$(dirname "$0")/pruning.sh
+if [ -x "$prune" ]; then
+    "$prune" wordlist.all > wordlist.pruned
+    cat wordlist.pruned | grep '^[a-z]*$' | head -4096 > wordlist.4096
+    cat wordlist.pruned | grep '^[a-z]*$' | head -2048 > wordlist.2048
+else
+    echo "Note: Couldn't find $prune. Oh, well."
+    cat wordlist.all | grep '^[a-z]*$' | head -4096 > wordlist.4096
+    cat wordlist.all | grep '^[a-z]*$' | head -2048 > wordlist.2048
+fi
+
