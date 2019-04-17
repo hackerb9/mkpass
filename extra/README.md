@@ -69,14 +69,14 @@ The script named [`wordfreq`](wordfreq) creates wordlists usable by
 
 When run `wordfreq` does the following:
 
-1. Reads words from `*.txt` in the current directory 1. Cleans up
-characters in the file (removing non-letters, but trying to leave in
+1. Reads words from `*.txt` in the current directory 
+1. Cleans up characters in the file (removing non-letters, but trying to leave in
 hyphens and apostrophes
-
-By default
-it creates two: [`wordlist.4096`](wordlist.4096),
+1. Create two files: [`wordlist.4096`](wordlist.4096) and
 [`wordlist.2048`](wordlist.2048), which are the top 4096 and the top
 2048 most frequent words.
+
+
 
 
 ### wordlist.all (optional)
